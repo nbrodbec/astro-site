@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import type { ImageMetadata } from 'astro';
+import FallbackImage from '../assets/bitmoji_laptop.png';
+import { SITE_TITLE, SITE_DESC } from '../consts';
+
+interface Props {
+	image?: ImageMetadata;
+}
+
+const { image = FallbackImage } = Astro.props;
+
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Font preconnects -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+<!-- Primary Meta Tags -->
+<title>{SITE_TITLE}</title>
+<meta name="title" content={SITE_TITLE} />
+<meta name="description" content={SITE_DESC} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={SITE_TITLE} />
+<meta property="og:description" content={SITE_DESC} />
+<meta property="og:image" content={new URL(image.src, Astro.url)} />
+
+<!-- X -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={SITE_TITLE} />
+<meta property="twitter:description" content={SITE_DESC} />
+<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
