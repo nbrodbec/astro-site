@@ -1,1 +1,21 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/* Fonts */
+@theme {
+  --font-mono: 'Space Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+}
+
+/* Colours */
+@theme {
+  --color-atom-bg: #282C34;
+  --color-atom-surface: #21252B;
+  --color-atom-text: #ABB2BF;
+  --color-atom-white: #E6E6E6;
+  --color-atom-purple: #C678DD;
+  --color-atom-blue: #61AFEF;
+  --color-atom-green: #98C379;
+  --color-atom-red: #E06C75;
+  --color-atom-cyan: #56B6C2;
+  --color-atom-yellow: #E5C07B;
+}
