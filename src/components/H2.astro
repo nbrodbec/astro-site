@@ -1,7 +1,9 @@
 ---
-
+interface Props {
+  nomargin?: boolean  
+}
 ---
 
-<h2 class="font-mono text-3xl text-atom-blue font-medium">
+<h2 class={`font-mono text-3xl text-atom-blue font-medium ${Astro.props.nomargin ? '' : 'mb-3'}`}>
   <slot />
 </h2>

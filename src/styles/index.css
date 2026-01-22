@@ -11,6 +11,7 @@
   --color-atom-bg: #282C34;
   --color-atom-surface: #21252B;
   --color-atom-text: #ABB2BF;
+  --color-atom-comment: #5C6370;
   --color-atom-white: #E6E6E6;
   --color-atom-purple: #C678DD;
   --color-atom-blue: #61AFEF;
@@ -18,4 +19,8 @@
   --color-atom-red: #E06C75;
   --color-atom-cyan: #56B6C2;
   --color-atom-yellow: #E5C07B;
+}
+
+p {
+  margin-bottom: calc(var(--spacing) * 3);
 }

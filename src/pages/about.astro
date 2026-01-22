@@ -1,0 +1,55 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import H3 from "../components/H3.astro";
+import Card from "../components/Card.astro"
+import Section from "../components/Section.astro"
+---
+
+<PageLayout>
+  <!-- Intro -->
+  <Section>
+    <H1>About Me.</H1>
+    <div class="mt-10 sm:mt-12">
+      <H3>I prefer the kernel to the cloud.</H3>
+      <p>While many engineers are moving up the abstraction ladder, I am digging down. I am a Computer Science student and Embedded Software Engineer based in Montreal, currently building high-reliability firmware at Motive Technologies.</p>
+      <p>My passion lies in the details that others abstract away. Whether it’s optimizing a ring buffer for zero-copy data transfer or debugging a race condition in a kernel module, I feel most at home when I have direct control over the hardware. I build systems where performance and stability are not just features, but requirements.</p>
+    </div>
+  </Section>
+
+  <!-- Tech Specs -->
+  <Section>
+    <H2>Technical Proficiency.</H2>
+    <div class="flex flex-col sm:flex-row gap-3">
+      <Card>
+        <span class="text-atom-white font-bold">Protocols</span>
+        <span>CAN Bus, J1939, J1979</span>
+        <span>SPI, I2C, UART</span>
+        <span>TCP/IP & Sockets</span>
+        <span>BLE</span>
+      </Card>
+      <Card>
+        <span class="text-atom-white font-bold">Tools</span>
+        <span>GDB & Valgrind</span>
+        <span>Wireshark</span>
+        <span>Make / CMake</span>
+        <span>Docker</span>
+      </Card>
+      <Card>
+        <span class="text-atom-white font-bold">OS Internals</span>
+        <span>Linux & Kernel Modules</span>
+        <span>Concurrency</span>
+        <span>IPC</span>
+        <span>Memory Management</span>
+      </Card>
+    </div>
+  </Section>
+
+  <!-- Interests -->
+  <Section>
+    <H2>Offline.</H2>
+    <p>Away from the keyboard, I swap digital signals for analog ones. I play guitar to reset my brain, shifting focus from memory safety to rhythm and music theory.</p>
+    <p>I also enjoy the chemistry of mixology, treating a cocktail recipe with the same precision as a build script (currently perfecting a batched Limoncello).</p>
+  </Section>
+</PageLayout>

@@ -1,0 +1,88 @@
+---
+import H3 from "./H3.astro"
+import HeaderImgLink from "./HeaderImgLink.astro"
+import HeaderLink from "./HeaderLink.astro"
+---
+
+<header class="sticky top-0 z-50 w-full">
+  <div class="p-5 flex bg-atom-bg/80 backdrop-blur-md flex-col items-start sm:items-center sm:flex-row justify-left sm:justify-start gap-5">
+
+    <!-- Hamburger Menu -->
+    <div class="flex items-center sm:hidden">
+      <button type="button" command="--toggle" commandfor="mobile-menu" class="relative inline-flex items-center justify-center rounded-md text-atom-text active:bg-atom-surface hover:text-atom-white">
+        <span class="absolute"></span>
+        <span class="sr-only">Open main menu</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor" data-slot="icon" aria-hidden="true" class="size-6 in-aria-expanded:hidden">
+          <path d="M3 3h18M3 12h18M3 21h18" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor" data-slot="icon" aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
+          <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+    
+    <div class="absolute left-0 right-0 text-center sm:relative pointer-events-none">
+      <a href="/" class="text-atom-purple text-2xl font-mono pointer-events-auto">
+        Nicholas <span class="text-atom-green">Brodbeck</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Items -->
+    <div
+      id="mobile-menu"
+      hidden
+      class="flex gap-5 flex-col w-full sm:hidden"
+    >
+      <HeaderLink href="/about">About</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/resume">Resume</HeaderLink>
+      <hr />
+      <!-- Contact Icons -->
+      <div class="flex flex-row gap-5 justify-left">
+        <HeaderImgLink href="https://github.com/nbrodbec" img="/src/assets/github-mark-white.png" />
+        <HeaderImgLink href="https://linkedin.com/in/nbrodbeck" img="/src/assets/Linkedin-Mark.svg" />
+      </div>
+    </div>
+
+    <!-- Menu Items -->
+    <div 
+      class="hidden grow flex-row justify-end gap-5 sm:flex"
+    >
+      <HeaderLink href="/about">About</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/resume">Resume</HeaderLink>
+    </div>
+
+    <!-- Contact Items -->
+     <div
+      class="hidden sm:flex flex-row gap-5"
+     >
+      <span class="text-xl text-atom-text">|</span>
+      <HeaderImgLink href="https://github.com/nbrodbec" img="/src/assets/github-mark-white.png" />
+      <HeaderImgLink href="https://linkedin.com/in/nbrodbeck" img="/src/assets/Linkedin-Mark.svg" />
+     </div>
+
+  </div>
+
+  <!-- Drop shadow -->
+  <div class="h-4 w-full bg-linear-to-b from-atom-surface to-transparent">
+
+  </div>
+</header>
+
+<!-- Mobile Button Logic -->
+<script type="module">
+  const menu = document.getElementById("mobile-menu")
+  menu?.addEventListener("command", (event) => {
+    if (event.command == "--toggle") {
+      if (menu.hasAttribute("hidden"))
+      {
+        menu.removeAttribute("hidden")
+        event.source.setAttribute("aria-expanded", "true");
+      } else {
+        menu.setAttribute("hidden", "");
+        event.source.setAttribute("aria-expanded", "false");
+      }
+    }
+  });
+</script>

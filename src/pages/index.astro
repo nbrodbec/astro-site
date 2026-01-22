@@ -1,24 +1,114 @@
 ---
 import "../styles/index.css";
-import Head from "../components/Head.astro";
+import Section from "../components/Section.astro";
 import H1 from "../components/H1.astro";
 import H2 from "../components/H2.astro";
 import H3 from "../components/H3.astro";
 import Link from "../components/Link.astro";
+import PageLayout from "../layouts/HeroPageLayout.astro";
+import LinkButton from "../components/LinkButton.astro";
+import CommentBlock from "../components/CommentBlock.astro";
+import { getCollection } from "astro:content";
+import BlogCard from "../components/BlogCard.astro";
+
+// Latest Blog Post
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const latestPost = posts[0];
 ---
 
-<html lang="en">
-	<head>
-		<Head />
-	</head>
-	<body 
-		class="bg-atom-bg text-atom-white font-sans"
-	>
-		<H1>H1</H1>
-		<H2>H2</H2>
-		<H3>H3</H3>
-		<p>
-			This is a test of body text. <Link href="">CLICK here</Link>Lorem ipsum dolor etc.
-		</p>
-	</body>
-</html>
+<PageLayout>
+	<!-- Hero -->
+	<div slot="hero" class="flex flex-col gap-5 items-center md:flex-row text-left">
+		<img src="/src/assets/bitmoji_laptop.png" class="mx-auto" />
+		<div class="space-y-5">
+
+			<div class="text-center md:text-left">
+				<H1>Nicholas Brodbeck</H1>
+				<H2>Embedded Software Engineer</H2>
+			</div>
+
+			<CommentBlock>
+				<div class="flex flex-row">
+					<span class="text-atom-purple font-bold">@brief&nbsp;</span> 
+					<span>Embedded Software Engineer based in Montreal, Canada.</span>
+				</div>
+				<br>
+				<div class="grid grid-cols-[auto_1fr] gap-3">
+					<span class="font-bold">Linux</span>
+					<span>High-performance socket programming and kernel networking.</span>
+					<span class="font-bold">Real-time</span>
+					<span>Squeezing maximum efficiency from constrained resources.</span>
+					<span class="font-bold">Drivers</span>
+					<span>Bridging the gap between raw hardware and software.</span>
+				</div>
+			</CommentBlock>
+
+			<div class="w-full mx-auto md:mx-0 grid grid-cols-1 gap-5 items-center sm:grid-cols-3">
+				<LinkButton href="/about">
+					About
+				</LinkButton>
+				<LinkButton href="/blog">
+					Blog
+				</LinkButton>
+				<LinkButton href="/resume">
+					Resume
+				</LinkButton>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div>
+		<!-- Skills -->
+		<Section>
+			<H2>My Technical Arsenal.</H2>
+			<H3>I work best where software meets silicon.</H3>
+			<div class="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-x-3">
+					<span class="font-bold text-atom-white">Languages</span>
+					<span>C/C++, Python, Bash, Lua</span>
+					<span class="font-bold text-atom-white">Systems</span>
+					<span>Linux, Systemd, FreeRTOS</span>
+					<span class="font-bold text-atom-white">Hardware & Protocols</span>
+					<span>ARM Cortex, CAN Bus, BLE</span>
+			</div>
+		</Section>
+		
+		<!-- Experience -->
+		<Section>
+			<H2>My Experience.</H2>
+			<div class="flex flex-col gap-3">
+				<div class="grid grid-cols-1 sm:grid-cols-4">
+					<span class="text-atom-white font-bold">Motive Technologies</span>
+					<span class="sm:col-span-2">Linux Firmware & Telematics</span>
+					<span class="hidden sm:inline text-right">2025 - Present</span>
+				</div>
+				<div class="grid grid-cols-1 sm:grid-cols-4">
+					<span class="text-atom-white font-bold">MDA Space</span>
+					<span class="sm:col-span-2">Satellite Systems V&V</span>
+					<span class="hidden sm:inline text-right">2024</span>
+				</div>
+				<div class="grid grid-cols-1 sm:grid-cols-4">
+					<span class="text-atom-white font-bold">Wrmth</span>
+					<span class="sm:col-span-2">FreeRTOS IoT</span>
+					<span class="hidden sm:inline text-right">2024</span>
+				</div>
+				<div class="sm:mt-3 sm:ml-auto">
+					<Link href="/resume">Full Resume →</Link>
+				</div>
+			</div>
+		</Section>
+
+		<!-- Writing -->
+		 <Section>
+			<H2>My Writing.</H2>
+			<div>
+				<BlogCard {...latestPost.data} id={latestPost.id} />
+			</div>
+			<div class="w-fit mt-3 sm:ml-auto">
+				<Link href="/blog">More Writing →</Link>
+			</div>
+		</Section>
+	</div>
+</PageLayout>

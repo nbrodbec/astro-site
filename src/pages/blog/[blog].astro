@@ -1,0 +1,47 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import H1 from '../../components/H1.astro';
+import H3 from '../../components/H3.astro';
+import Section from '../../components/Section.astro';
+import H2 from '../../components/H2.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { blog: post.id },
+		props: post,
+	}));
+}
+
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<PageLayout>
+	<article>
+		<div class="border-atom-comment border-b-2 pb-4">
+			<!-- Titles -->
+			<div class="mb-3">
+				<H1 nomargin>{post.data.title}</H1>
+				{
+					post.data.subtitle && (
+					<H3 nomargin>{post.data.subtitle}</H3>)
+				}
+			</div>
+			
+			<div class="flex flex-row gap-2 font-mono text-sm">
+				{post.data.tags.map(tag => (
+					<span class="text-atom-yellow">{tag}</span>
+				))}
+				<span class="text-atom-comment">|</span>
+				<span class="text-atom-comment">{post.data.pubDate.toDateString()}</span>
+			</div>
+		</div>
+		<Section>
+			<Content />
+		</Section>
+	</article>
+</PageLayout>

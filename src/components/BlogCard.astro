@@ -1,0 +1,35 @@
+---
+import H3 from './H3.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags: string[];
+}
+---
+
+<article class="group relative p-5 not-last:border-b-2 border-atom-comment/20 active:bg-atom-comment/20 hover:bg-atom-comment/10 ">
+  <div class="flex flex-col">
+    <div class="flex flex-col justify-between sm:flex-row sm:items-end">
+      <span class="">
+        <H3 nomargin>
+          <a href={`/blog/${Astro.props.id}`} class="group-active:text-atom-purple group-hover:text-atom-purple transition-colors">
+            {Astro.props.title}
+            <span class="absolute inset-0" aria-hidden="true"/>
+          </a>
+        </H3>
+      </span>
+      <span class="font-mono text-atom-comment text-sm">{Astro.props.pubDate.toDateString()}</span>
+    </div>
+    <span class="line-clamp-3 sm:line-clamp-2">{Astro.props.description}</span>
+    <div class="mt-3 flex flex-row text-sm font-mono text-atom-yellow">
+      {Astro.props.tags.map(tag => (
+        <span class="first:hidden">&nbsp;</span>
+        <span>{tag}</span>
+        <span class="last:hidden">,</span>
+      ))}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,17 @@
+---
+interface Props {
+	href: string;
+}
+
+// Compare only first level of the paths
+const path = Astro.url.pathname.split('/')[1];
+const href = Astro.props.href.split('/')[1];
+---
+
+<a
+  href={Astro.props.href}
+  aria-current={`${path === href}`}
+  class="text-xl font-mono text-atom-text hover:text-atom-white active:text-atom-white transition-colors aria-current:text-atom-yellow"
+>
+  <slot /></a>
+

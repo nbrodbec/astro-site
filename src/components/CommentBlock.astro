@@ -1,0 +1,23 @@
+---
+const asteriskColumnStr = "\n *".repeat(100)
+const asteriskColumnArray = asteriskColumnStr.split("\n")
+
+---
+<div class="relative text-atom-text grid grid-cols-[auto_1fr] gap-3 font-mono text-base/6 italic">
+  <div class="absolute text-atom-comment left-0 top-0 bottom-0 h-full flex flex-col">
+    <span>/**</span> 
+    <span class="flex-1 overflow-hidden min-h-0 flex flex-col">
+      {asteriskColumnArray.map(_ => (
+        <span>
+          &nbsp;*
+        </span>
+      ))}
+    </span>
+    <span>&nbsp;*/</span>
+  </div>
+  <div class="pl-10">
+    <br>
+    <slot />
+    <br>
+  </div>
+</div>

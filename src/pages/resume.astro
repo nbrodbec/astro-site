@@ -1,0 +1,192 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import H1 from "../components/H1.astro";
+import H2 from "../components/H2.astro";
+import H3 from "../components/H3.astro";
+import LinkButton from "../components/LinkButton.astro";
+import Section from "../components/Section.astro";
+import Link from "../components/Link.astro";
+---
+
+<PageLayout>
+
+  <!-- Page Header -->
+  <Section>
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-center justify-between">
+      <span>
+        <H1>My Resume.</H1>
+      </span>
+      <span>
+        <LinkButton ghost href="">Download</LinkButton>
+      </span>
+    </div>
+    <hr class="mt-10 border-b border-atom-comment/20">
+  </Section>
+
+  <!-- Resume Header -->
+   <Section>
+    <div class="flex flex-col gap-3 justify-start sm:flex-row ">
+      <div class="flex flex-col items-start grow">
+        <H2>Nicholas Brodbeck</H2>
+        <span>
+          <span class="text-atom-white font-bold">Languages:</span> C/C++, Python, JavaScript, Lua, SQL
+        </span>
+        <span>
+          <span class="text-atom-white font-bold">Technologies:</span> Git, NodeJS, REST, MongoDB, FreeRTOS, CAN Bus
+        </span>
+      </div>
+      <div class="flex flex-col">
+        <span>Montreal, QC, Canada</span>
+        <span>contact@nbrodbeck.com</span>
+        <span>(514) xxx-xxxx</span>
+        <Link href="https://linkedin.com/in/nbrodbeck">linkedin.com/in/nbrodbeck</Link>
+        <Link href="https://github.com/nbrodbec">github.com/nbrodbec</Link>
+      </div>
+    </div>
+   </Section>
+
+  <!-- Education -->
+  <Section>
+    <H2>Education</H2>
+    <div class="flex flex-col sm:flex-row justify-between">
+      <H3 nomargin>University of Waterloo</H3>
+      <span class="hidden sm:inline text-atom-white font-bold">Waterloo, Ontario</span>
+    </div>
+    <div class="flex flex-col sm:flex-row justify-between text-atom-white font-bold">
+      <span>Bachelor of Computer Science, Co-Op</span>
+      <span>September 2022 - April 2026</span>
+    </div>
+    <div class="flex flex-row gap-3">
+      <span>Coursework:</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-3">
+        <span>&bullet; Operating Systems</span>
+        <span>&bullet; Compilers</span>
+        <span>&bullet; Algorithms & Datastructures</span>
+        <span>&bullet; Concurrent Programming</span>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Experience -->
+  <Section>
+    <H2>Experience</H2>
+    <div class="space-y-6">
+      <!-- Motive -->
+      <div>
+        <div class="flex flex-col sm:flex-row justify-between">
+          <H3 nomargin>Motive Technologies</H3>
+          <span class="hidden sm:inline text-atom-white font-bold">C, Python</span>
+        </div>
+        <div class="flex flex-col sm:flex-row justify-between text-atom-white font-bold">
+          <span>Embedded Software Engineer</span>
+          <span>May 2025 - Present</span>
+        </div>
+        <ul class="list-disc ml-6">
+          <li>Developed and tested embedded software for reliable CAN bus message processing in vehicle telematics systems</li>
+          <li>Optimized a high-throughput CAN Rx path resulting in a 13% drop in CPU utilization and a packet drop rate below 1%</li>
+          <li>Conducted benchmark testing and compiled results into an interactive dashboard for data-driven optimization</li>
+        </ul>
+      </div>
+
+      <!-- MDA -->
+      <div>
+        <div class="flex flex-col sm:flex-row justify-between">
+          <H3 nomargin>MDA Space</H3>
+          <span class="hidden sm:inline text-atom-white font-bold">C++, Python</span>
+        </div>
+        <div class="flex flex-col sm:flex-row justify-between text-atom-white font-bold">
+          <span>Software Engineer, Satellite Systems</span>
+          <span>September - December 2024</span>
+        </div>
+        <ul class="list-disc ml-6">
+          <li>Worked on the embedded software for the on-board processor (OBP) of a software-defined digital satellite product</li>
+          <li>Conducted verification and validation of the OBP using pytest and C++, ensuring compliance with product requirements</li>
+          <li>Led API documentation automation with Doxygen, Sphinx and Pandoc, providing consistency and minimizing effort team-wide</li>
+        </ul>
+      </div>
+
+      <!-- Orbital -->
+      <div>
+        <div class="flex flex-col sm:flex-row justify-between">
+          <H3 nomargin>UW Orbital Design Team</H3>
+          <span class="hidden sm:inline text-atom-white font-bold">C, FreeRTOS</span>
+        </div>
+        <div class="flex flex-col sm:flex-row justify-between text-atom-white font-bold">
+          <span>Member, Firmware Subteam</span>
+          <span>September 2023 - Present</span>
+        </div>
+        <ul class="list-disc ml-6">
+          <li>Designed, developed and tested firmware aboard a CubeSat for the Canadian Satellite Design Challenge</li>
+          <li>Employed FreeRTOS on a TI-RM46 MCU while interfacing with peripherals via I²C communication protocol</li>
+        </ul>
+      </div>
+
+      <!-- Wrmth -->
+      <div>
+        <div class="flex flex-col sm:flex-row justify-between">
+          <H3 nomargin>Wrmth</H3>
+          <span class="hidden sm:inline text-atom-white font-bold">C, FreeRTOS, ESP32</span>
+        </div>
+        <div class="flex flex-col sm:flex-row justify-between text-atom-white font-bold">
+          <span>Embedded Firmware Engineer</span>
+          <span>January - April 2024</span>
+        </div>
+        <ul class="list-disc ml-6">
+          <li>Developed and tested firmware for IoT systems embedded in heated outdoor smart furniture</li>
+          <li>Implemented Bluetooth Low Energy (BLE) GATT services & characteristics to interact with a mobile app over Bluetooth</li>
+        </ul>
+      </div>
+
+      <!-- H&RR -->
+      <div>
+        <div class="flex flex-col sm:flex-row justify-between">
+          <H3 nomargin>Health & Rehab Research, Inc.</H3>
+          <span class="hidden sm:inline text-atom-white font-bold">Python, MATLAB, XGBoost</span>
+        </div>
+        <div class="flex flex-col sm:flex-row justify-between text-atom-white font-bold">
+          <span>Machine Learning Engineer</span>
+          <span>June - August 2023</span>
+        </div>
+        <ul class="list-disc ml-6">
+          <li>Conducted research and development on deep learning models powering a Brain-Computer Interface (BCI)</li>
+          <li>Employed a graph neural network (GNN) to classify imagined movements (Motor Imagery) from live EEG readings</li>
+          <li>Discovered and eliminated data leaking in the training process for an overall increase of 11% in performance accuracy</li>
+        </ul>
+      </div>
+
+      <!-- Roblox -->
+      <div>
+        <div class="flex flex-col sm:flex-row justify-between">
+          <H3 nomargin>Self Employed</H3>
+          <span class="hidden sm:inline text-atom-white font-bold">Lua</span>
+        </div>
+        <div class="flex flex-col sm:flex-row justify-between text-atom-white font-bold">
+          <span>Game Developer</span>
+          <span>January 2021 - August 2022</span>
+        </div>
+        <ul class="list-disc ml-6">
+          <li>Spearheaded development on 2 round-based, and 5 drop-in-drop-out multiplayer games on the Roblox platform</li>
+          <li>Generated over 235 million plays, roughly 1,500 peak concurrent users and over $200,000 USD in revenue</li>
+          <li>Delivered monthly Live Ops updates to an engaged community of over 4.0 million monthly active users</li>
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Projects -->
+  <Section>
+    <H2>Projects</H2>
+    <div>
+      <div class="flex flex-col sm:flex-row justify-between">
+        <H3 nomargin>Chess Engine</H3>
+        <span class="hidden sm:inline text-atom-white font-bold">C++</span>
+      </div>
+      <ul class="list-disc ml-6">
+        <li>Developed a chess engine that supports all standard chess rules including castling, en passant and pawn promotions</li>
+        <li>Utilized a robust object-oriented methodology supported by UML diagrams to enhance project visualization</li>
+        <li>Employed Observer, Command, and Decorator design patterns to enhance modularity, scalability, and maintainability</li>
+        <li>Ensured memory and exception safety by adhering to Resource Acquisition Is Initialization (RAII) principles</li>
+      </ul>
+    </div>
+  </Section>
+</PageLayout>

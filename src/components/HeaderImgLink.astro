@@ -1,0 +1,23 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	href: string;
+	img: string;
+}
+---
+
+<!-- 
+mask-[url(/src/assets/github-mark-white.png)]
+mask-[url(/src/assets/Linkedin-Mark.svg)]
+-->
+
+<a
+  href={Astro.props.href}
+  class={`aspect-square w-5 my-auto`}
+>
+<div
+  class={`h-full w-full mask-alpha mask-contain mask-no-repeat bg-atom-text hover:bg-atom-white active:bg-atom-white transition-colors mask-[url(${Astro.props.img})]`}
+></div>
+</a>
+
