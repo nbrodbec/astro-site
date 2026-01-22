@@ -24,13 +24,11 @@ const { Content } = await render(post);
 	<article>
 		<div class="border-atom-comment border-b-2 pb-4 mb-4">
 			<!-- Titles -->
-			<div class="mb-3">
-				<H1 nomargin>{post.data.title}</H1>
-				{
-					post.data.subtitle && (
-					<H3 nomargin>{post.data.subtitle}</H3>)
-				}
-			</div>
+			<H1>{post.data.title}</H1>
+			{
+				post.data.subtitle && (
+				<H3>{post.data.subtitle}</H3>)
+			}
 			
 			<div class="flex flex-row gap-2 font-mono text-sm">
 				{post.data.tags.map(tag => (
