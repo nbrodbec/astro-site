@@ -10,6 +10,8 @@ import LinkButton from "../components/LinkButton.astro";
 import CommentBlock from "../components/CommentBlock.astro";
 import { getCollection } from "astro:content";
 import BlogCard from "../components/BlogCard.astro";
+import { Image } from "astro:assets";
+import bitmoji from "../assets/bitmoji_laptop.png";
 
 // Latest Blog Post
 const posts = (await getCollection('blog')).sort(
@@ -21,7 +23,7 @@ const latestPost = posts[0];
 <PageLayout>
 	<!-- Hero -->
 	<div slot="hero" class="flex flex-col gap-5 items-center md:flex-row text-left">
-		<img src="/src/assets/bitmoji_laptop.png" class="mx-auto" />
+		<Image src={bitmoji} alt="bitmoji with laptop" class="mx-auto" />
 		<div class="space-y-5">
 
 			<div class="text-center md:text-left">
