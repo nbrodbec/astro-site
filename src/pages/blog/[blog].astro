@@ -22,7 +22,7 @@ const { Content } = await render(post);
 
 <PageLayout>
 	<article>
-		<div class="border-atom-comment border-b-2 pb-4">
+		<div class="border-atom-comment border-b-2 pb-4 mb-4">
 			<!-- Titles -->
 			<div class="mb-3">
 				<H1 nomargin>{post.data.title}</H1>
@@ -40,8 +40,6 @@ const { Content } = await render(post);
 				<span class="text-atom-comment">{post.data.pubDate.toDateString()}</span>
 			</div>
 		</div>
-		<Section>
-			<Content />
-		</Section>
+		<Content />
 	</article>
 </PageLayout>
