@@ -22,7 +22,7 @@ const { Content } = await render(post);
 
 <PageLayout>
 	<article>
-		<div class="border-atom-comment border-b-2 pb-4 mb-4">
+		<div class="border-atom-comment/20 border-b-2 pb-4 mb-4">
 			<!-- Titles -->
 			<H1>{post.data.title}</H1>
 			{
@@ -30,7 +30,7 @@ const { Content } = await render(post);
 				<H3>{post.data.subtitle}</H3>)
 			}
 			
-			<div class="flex flex-row gap-2 font-mono text-sm">
+			<div class="flex mt-7 flex-row gap-2 font-mono text-sm">
 				{post.data.tags.map(tag => (
 					<span class="text-atom-yellow">{tag}</span>
 				))}
