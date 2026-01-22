@@ -7,11 +7,16 @@ import tunnel from 'astro-tunnel';
 
 import mdx from '@astrojs/mdx';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
 
-  integrations: [tunnel(), mdx()]
+  integrations: [tunnel(), mdx()],
+  adapter: vercel({
+    imageService: true,
+  }),
 });
