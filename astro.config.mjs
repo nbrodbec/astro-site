@@ -19,4 +19,13 @@ export default defineConfig({
   adapter: vercel({
     imageService: true,
   }),
+
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'one-light',
+        dark: 'one-dark-pro'
+      }
+    }
+  }
 });

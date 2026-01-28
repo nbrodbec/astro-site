@@ -21,7 +21,7 @@ const { Content } = await render(post);
 ---
 
 <PageLayout>
-	<article>
+	<article class="max-w-prose mx-auto">
 		<div class="border-atom-comment/20 border-b-2 pb-4 mb-4">
 			<!-- Titles -->
 			<H1>{post.data.title}</H1>
@@ -38,6 +38,8 @@ const { Content } = await render(post);
 				<span class="text-atom-comment">{post.data.pubDate.toDateString()}</span>
 			</div>
 		</div>
-		<Content />
+		<div class="leading-relaxed text-base md:text-lg">
+			<Content />
+		</div>
 	</article>
 </PageLayout>
