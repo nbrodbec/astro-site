@@ -8,6 +8,8 @@ import tunnel from 'astro-tunnel';
 import mdx from '@astrojs/mdx';
 
 import vercel from '@astrojs/vercel';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,6 +28,8 @@ export default defineConfig({
         light: 'one-light',
         dark: 'one-dark-pro'
       }
-    }
+    },
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex]
   }
 });

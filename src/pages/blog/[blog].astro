@@ -19,7 +19,8 @@ type Props = CollectionEntry<'blog'>;
 const post = Astro.props;
 const { Content } = await render(post);
 ---
-
+<!-- Get the latest one from: https://katex.org/docs/browser -->
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet">
 <PageLayout>
 	<article class="max-w-prose mx-auto">
 		<div class="border-atom-comment/20 border-b-2 pb-4 mb-4">
