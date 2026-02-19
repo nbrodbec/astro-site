@@ -1,0 +1,113 @@
+---
+  title: What is Computer Science?
+  subtitle: "Hint: It's more than just programming..."
+  description: "Hint: It's more than just programming..."
+  pubDate: 01-22-2026
+  tags: [CS]
+  path: computer-science
+---
+import H1 from "../../components/H1.astro"
+import H2 from "../../components/H2.astro"
+import H3 from "../../components/H3.astro"
+import BlockQuote from "../../components/BlockQuote.astro"
+import Link from "../../components/Link.astro"
+export const components = {h1: H1, h2: H2, h3: H3, blockquote: BlockQuote, a: Link};
+
+About a year ago I faced an unexpected question during an interview for a software engineering internship:
+How will you differentiate yourself as a computer scientist among engineers?
+
+I didn't know how to answer because at that point I didn't feel there was a difference between
+software engineering and computer science. Of course they're both different programs in
+university, but after graduation I was under the impression that both SWE and CS graduates
+would be looking in the same job pool.
+
+As I enter my final semester of a computer science degree at the University of Waterloo, I 
+know now that computer science is much more than just programming.
+
+## Computer.
+
+When talking about computer science, many focus solely on the word "computer". 
+
+Yes, a computer science degree will teach you lots about using a computer. 
+So will a software or computer engineering degree. So what makes computer science different?
+
+Computer science is really the study of computation. The 'computer' is really a mathematical model
+of computation. Since mathematical models are theoretical, advancements in computer science 
+can be made without ever even touching a physical computer. In fact, many of my computer science courses
+involved no real programming, but writing algorithms on paper in pseudocode and describing them in formal mathematical
+notation.
+
+For this reason, computer science has 
+a history that goes back far before the first physical computer was ever built.
+
+### 1800s
+
+For example, the first ever computer program to be published is attributed to [Ada Lovelace](https://en.wikipedia.org/wiki/Ada_Lovelace#First_published_computer_program)
+in 1843. The program, called [Note G](https://en.wikipedia.org/wiki/Note_G), was written to be run 
+by a computer called the [Analytical Engine](https://en.wikipedia.org/wiki/Analytical_engine); 
+a hypothetical computational model that was never really built. 
+
+### 1900s
+
+Perhaps a more famous computational model is the [Turing Machine](https://en.wikipedia.org/wiki/Turing_machine)
+developed by [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) in 1936. This model formally defines
+what can and cannot be accomplished by a computer, not based on physical constraints but on 
+mathematical ones.
+
+Funnily enough, a "true" Turing machine **cannot** be made in the real world. The mathematical model
+assumes unlimited resources like memory, which of course is not possible. However, it gives computer 
+scientists a foundation to build algorithms on and formulate rigorous proofs about these algorithms.
+
+## Science.
+
+Of course, a computer scientist isn't dealing with the abstract at all times. While there still are 
+many open theoretical problems that computer scientists are tackling in the research world (e.g. [P versus NP](https://en.wikipedia.org/wiki/P_versus_NP_problem)),
+I'd guess that the majority of computer scientists are using real hardware to do their research.
+
+Computer science research conducted on real hardware now introduces real-world constraints governed
+by the laws of physics. Computers are no longer theoretical models but physical machines made up of transistors
+and circuitry. How can we answer research questions with this setup?
+
+### The Scientific Method.
+
+Like most scientific disciplines, we use the scientific method. A hypothesis must be tested and data collected. If the data disagrees
+with the hypothesis, we change the hypothesis and begin anew. If the data agrees, we repeat the test, over and over. The more repeatable the results,
+the stronger the conclusion we can make.
+
+In computer science research this might look like designing an AI model and measuring its accuracy in predictions or classifications. 
+It might also look like designing a novel sorting algorithm and measuring the time it takes to run on average. The key aspect
+here is that we are not just writing code, but **measuring** aspects about the code. As Lord Kelvin put it,
+
+>  &hellip; when you can measure what you are speaking about [...] you know something about it; but when you cannot measure it [...] your knowledge is of a meagre and unsatisfactory kind. \citation Lord Kelvin (1889)
+
+Essentially, if all you're doing is writing code, you're only doing half the job of a computer scientist.
+
+## CS in Industry.
+
+Up until now I've spoken about computer science as a purely academic, research-oriented field. I, along with many of my peers
+that will soon be graduating with a Bachelor of Computer Science, won't be pursuing academia, but applying my learnings in industry.
+
+Except for a few rare R&D positions, most computer scientists entering the workforce will find themselves in a software engineering role.
+This brings me back to the question that prompted this blog post: 
+
+**What does someone with a background in CS have to offer in a software engineering role?**
+
+### Understanding of the Theory
+
+We've studied the theory. We know the inner workings of all the most popular algorithms used in industry today, and we know how to apply them
+to specific domains. We know how a CPU works at the instruction level, how a compiler works with our code, and how programming languages themselves
+are designed.
+
+I've heard many argue that all of this knowledge is useless; that you would never need any of this in the real world since most of this stuff has between
+abstracted away in modern programming languages and libraries. But knowing how our tooling works helps us work with it rather than against it. We know how 
+to write optimized, performance-focused programs that those without a CS background might not.
+
+### Data-Driven Decisions
+
+We've had it drilled into our brains that no choice is arbitrary. There are always tradeoffs to be considered, and we have been trained never to
+ignore them.
+
+If we are tasked to optimize a part of a program, it's not enough to analyze it visually and guess what needs to change. That's half the job. 
+Next is to quantify the change. Did it really help? If so, by how much? What is the theoretical upper limit of the change we can expect? 
+
+Knowing what questions to ask and then putting the work in to answer them is what gives us an edge in industry.

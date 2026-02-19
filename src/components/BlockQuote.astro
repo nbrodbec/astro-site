@@ -1,0 +1,33 @@
+---
+import H3 from "./H3.astro";
+const [quote, author] = await Astro.slots.render('default').then(str => {
+  const match = str.match(/<p>(.*)<\/p>/);
+  if (match) {
+    str = match[1];
+    const parts = str.split('\\citation');
+    if (parts.length > 1) {
+      return parts.map(s => s.trim());
+    } else {
+      return [str.trim(), ''];
+    }
+  } else {
+    return ['', ''];
+  }
+})
+---
+{quote && (
+
+<div class="px-8 md:px-12 lg:px-18">
+  <blockquote class="w-fit mx-auto font-mono">
+    <H3 set:html={`"${quote}"`}></H3>
+    {author && (
+    <span 
+      class="text-atom-green text-base italic text-right w-full block"
+      set:html={`— ${author}`}    
+    >
+    </span>
+    )}
+  </blockquote>
+</div>
+
+)}
