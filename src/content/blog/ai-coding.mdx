@@ -1,0 +1,109 @@
+---
+  title: Vibe Coding
+  subtitle: "High-Level Illusions and Low-Level Realities"
+  description: "High-Level Illusions and Low-Level Realities"
+  pubDate: 04-14-2026
+  tags: [CS, AI]
+  path: vibe-coding
+---
+import H1 from "../../components/H1.astro"
+import H2 from "../../components/H2.astro"
+import H3 from "../../components/H3.astro"
+import BlockQuote from "../../components/BlockQuote.astro"
+import Link from "../../components/Link.astro"
+export const components = {h1: H1, h2: H2, h3: H3, blockquote: BlockQuote, a: Link};
+
+AI and large language models (LLMs) have taken the world by storm in the past few years. One of their biggest marketing points is their ability to generate working code from natural language text.
+
+
+### Vibe Coding
+This development in code-generating LLMs has laid the groundwork for a new archetype of programmer: the vibe coder. Vibe coding&mdash;the practice of prompting LLMs or AI agents to generate projects from scratch rather than writing code manually&mdash;has gained a lot of traction over the past few years as it allows for faster prototyping and greater accessibility for those with less technical expertise. Essentially, vibe coding decouples the project specifications from the implementation, enabling what many AI advocates suggest as the ability to ship products faster.
+
+## AI Code in Production?
+Should AI-generated code be used in production? Many teams allow it to varying degrees. It has been a heated topic of discussion particularly in open source projects that have strict requirements and contribution guidelines.
+
+### Linux Kernel
+The [Linux Kernel](https://kernel.org), for example, [allows AI agents to contribute to the kernel](https://github.com/torvalds/linux/blob/1f5ffc672165ff851063a5fd044b727ab2517ae3/Documentation/process/coding-assistants.rst) so long as the changes are submitted by a human to maintain some form of accountability. This way, regressions can be pinned to a specific developer, incentivizing them to really look over the code they've generated before submitting a pull request.
+
+### Gentoo Linux
+On the other hand, [Gentoo Linux](https://gentoo.org) has [explicitly banned all AI contributions from their project](https://wiki.gentoo.org/wiki/Project:Council/AI_policy). Their reasoning states that AI generated code tends to have copyright violations and is often low quality, requiring more hours in human review than typical human-written code. 
+
+### cURL
+The maintainer of [curl](https://curl.se) had to [shut down their bug bounty program](https://github.com/curl/curl/blob/94f14c54b0f906df44a1e8f45ec12cde7b848c00/docs/BUG-BOUNTY.md) altogether after being bombarded with AI generated submissions that were full of hallucinations. In this case, AI generated code wasn't making it into production, but was flooding human reviewers with hallucinated code to review, drowning out valid submissions.
+
+## Standards For Production Code
+Even before code-generating LLMs were made popular, rigorous tests and CI pipelines were an important part of the software development lifecycle. These crucial steps help eliminate human error and catch performance regressions early. 
+
+With AI in the picture, these quality control steps are more important than ever. With code being generated at much faster rates, the bottleneck becomes human reviewers. Many eager developers that put their blind trust in their AI tools might skimp out on the review stage, letting code through as long as it passes the baseline tests. 
+
+This workflow can become dangerous, though, for a number of reasons:
+
+* Automated tests rarely give 100% test coverage. There will inevitably be untested code paths and regressions that make it through the test suite.
+* When new features are added, new unit tests should be added. If it's AI generating the new features, will AI be generating the new unit tests? This enters dangerous territory where we have AI tools validating their own code. Without manual intervention we can't be sure of proper coverage.
+
+### The Tradeoff
+When it comes to coding with AI we essentially have two options:
+
+1. Put in the work upfront to thoroughly review and test code at the cost of development time,
+2. Have a high tolerance for regressions at the benefit of faster development time.
+
+Depending on the industry, option 2 may be fine. One would have to weigh the potential impact of frequent AI hallucinations against the cost in development it would save. 
+
+For example, many front-end applications could probably be heavily AI-assisted. In most cases the worst that could happen is a UI bug that, even if it makes it into production, will eventually be reported by users and solved.
+
+A safety-critical system, on the other hand, has a very, very low tolerance for AI hallucinations. Would you get on a Boeing 747 knowing that a good portion of its software was written by AI? I would not. If AI assistance is to be used in developing safety-critical software, it needs to be alongside a very rigorous manual review process and a strong suite of automated tests that guarantee proper coverage. When lives are at stake, the added development time is always worth it.
+
+## Where AI Fails
+Suppose for the sake of argument that we had an LLM that:
+* Never hallucinates,
+* Always writes functioning code
+
+Setting aside the fact that this is a highly optimistic assumption, there are still situations where the AI generated code will be worse than what a human can achieve.
+
+### Security
+One of the most cited points of failure when it comes to AI-generated code is security. 
+In fact, security vulnerabilities stemming from AI-generated code have become such a 
+crisis that researchers from Georgia Tech have developed a tool, 
+dubbed the [Vibe Security Radar](https://vibe-radar-ten.vercel.app/), that detects and 
+publishes instances where LLMs have produced vulnerabilities of varying 
+severity and gotten them pushed into production. It tracks these by finding vulnerabilities that were later reported and fixed, so the number of true security vulnerabilities may be underreported.
+
+### Performance
+Safety and correctness of code is important, but so is its effiency in terms of memory consumption and runtime. For many problems it would be trivial to find a solution given infinite resources, but of course we don't have infinite resources, and optimally performant solutions are preferred where possible.
+
+One study from the University of Waterloo tested the performance of complex C++ problems (concurrency and I/O problems), comparing human solutions to GitHub Copilot-assisted solutions.[^1] Their results showed that not only did the Copilot-assisted solutions perform worse than the unassisted solutions, but Copilot's suggestions were even guiding the user toward less-performant solutions. Their 'expert' solutions to the problems performed nearly 6x faster than the GitHub Copilot solutions.
+
+### Concurrency
+Concurrent and parallel programming problems are notoriously some of the most difficult class of problems that appears everywhere in the real world. Today, pretty much any system or piece of infrastructure encountered in the wild has multiple processors and will attempt to leverage parallelism across them: embedded systems, web servers, internet routers, operating systems; the list goes on. Even uniprocessor systems will often multitask concurrently to guarantee progress among several processes.
+
+The reason concurrent programming is difficult is because of the non-determinism it introduces. Most thread/process schedulers will be non-deterministic, and so there are a countless number of ways tasks may interact with one another. Automated testing can only go so far, and new classes of bugs (race conditions, livelocks, deadlocks, etc.) may be hidden deep in the codebase and very hard to reproduce once they do occur.
+
+For an AI agent, this non-determinism is an even bigger problem than it is for humans. A study conducted across several of the most popular LLMs determined that these models are all significantly worse at generating parallel code versus sequential code. [^2] What's more is that even in the cases the LLMs generated *correct* parallel code (i.e. code that runs with no concurrent bugs,) the code performed poorly and was not scalable. 
+
+Since concurrency is almost always leveraged as a way to improve a system's performance, a poor performing concurrent solution is not very helpful. In this case, at least with the current state of code-generating LLMs, a human programmer with experience in concurrent and parallel systems is still leagues ahead of AI.
+
+### Hardware Awareness
+The inefficient solutions AI produces is hardly a problem when running on machines with huge amounts of resources. Some of the most popular pieces of software today are notoriously filled with bloat and act as resource hogs (e.g. Google Chrome), but since modern systems have the resources to support it there is no point dedicating time and energy into optimization.
+
+Many systems, though, are not so lucky. In 2009 it was estimated that ~98% of processors produced each year are in embedded systems,[^3] not the personal computers you and I use everyday. Think IoT devices, home appliances, consumer electronics, automotive systems, industrial automation tools, etc. These systems are memory constrained, and often don't have very powerful processors. So, embedded software developers have to approach their solutions with care, saving memory and time wherever possible.
+
+The best way to do this is to work with the hardware. A developer that knows the details of the underlying hardware can ultimately squeeze every ounce of performance out of that system. They can leverage cache locality, consider the memory hierarchy, ensure optimal data alignment, utilize direct memory access and exploit SIMD and vectorization if their processor allows it.
+
+One study looked at an LLMs ability to write hardware-dependent code, giving them problems ranging in complexity from "basic sensor reading to complete cloud database integration with visualization dashboards."[^4] They found that most models were able to write good, working code for the simpler applications. However, many of their hallucination rates climbed and their instruction-following ability fell as problems got more complex. Interestingly, Claude Sonnet 4.5 was the best performing among them.
+
+My takeaway from this study would be that, with the right model, AI's role in embedded development would be best as an assistant rather than an autonymous agent. Architecture decisions should be left to the engineers and AI should be consulted only for partial implementations.
+
+## Will AI Replace Software Engineers?
+After going through the current limitations of AI, I think it's fair to say that the software engineering profession will still exist for decades to come. As it stands today, technical expertise is still far more valuable than what LLMs have to offer, in some industries more than others. AI will remain a tool that engineers use to boost productivity, with the proper guardrails in place.
+
+That assumes, however, that a software engineer *has technical expertise*. 
+
+For many years, the software industry was easy to get into as there was a broad demand for people who just knew how to code and maybe had a few side projects showing their enthusiasm. Today, the market is more competitive as the bar has been raised. Hiring for software engineering positions is on the decline, and in my opinion that's because many of the tedious, boilerplate tasks that once upon a time would have been assigned to an intern or a junior, are now capable of being automated. Being a subpar engineer just coasting by is no longer a viable career path.
+
+My belief is that an engineer who continues to differentiate themselves from others will remain marketable and will continue to be more valuable than an AI model. The vibe-coders we see on LinkedIn&mdash;the ones iterating on full projects while burning through their Claude tokens, relying on prompt-engineering to mask a lack of 
+architectural understanding&mdash;often don’t have the foundational technical depth that makes an engineer marketable. While a tool like AI can automate the 'how,' it cannot take responsibility for the 'why.' An engineer’s value is found in the reasoning they provide when the tools are stripped away and the system is on the line.
+
+[^1]: Daniel Erhabor, Sreeharsha Udayashankar, Meiyappan Nagappan, and Samer Al-Kiswany. 2025. Measuring the Runtime Performance of C++ Code Written by Humans Using GitHub Copilot. In Proceedings of the IEEE/ACM 47th International Conference on Software Engineering (ICSE '25). IEEE Press, 2062–2074. https://doi.org/10.1109/ICSE55347.2025.00059
+[^2]: Daniel Nichols, Joshua H. Davis, Zhaojun Xie, Arjun Rajaram, and Abhinav Bhatele. 2024. Can Large Language Models Write Parallel Code? In Proceedings of the 33rd International Symposium on High-Performance Parallel and Distributed Computing (HPDC '24). Association for Computing Machinery, New York, NY, USA, 281–294. https://doi.org/10.1145/3625549.3658689
+[^3]: Michael Barr. 2009. Real men program in C. Embedded. https://www.embedded.com/real-men-program-in-c/
+[^4]: Marek Babiuch and Pavel Smutný. 2026. Benchmarking Large Language Models for Embedded Systems Programming in Microcontroller-Driven IoT Applications. Future Internet 18, 2 (2026), 94. https://doi.org/10.3390/fi18020094
